@@ -41,7 +41,7 @@ public class Countries {
                     {"DEMOCRATIC REPUBLIC OF THE CONGO (ZAIRE)",
                             "Kinshasa"},
                     {"ZAMBIA","Lusaka"}, {"ZIMBABWE","Harare"},
-// Asia
+                    // Asia
                     {"AFGHANISTAN","Kabul"}, {"BAHRAIN","Manama"},
                     {"BANGLADESH","Dhaka"}, {"BHUTAN","Thimphu"},
                     {"BRUNEI","Bandar Seri Begawan"},
@@ -65,7 +65,7 @@ public class Countries {
                     {"THAILAND","Bangkok"}, {"TURKEY","Ankara"},
                     {"UNITED ARAB EMIRATES","Abu Dhabi"},
                     {"VIETNAM","Hanoi"}, {"YEMEN","Sana’a"},
-// Australia and Oceania
+                    // Australia and Oceania
                     {"AUSTRALIA","Canberra"}, {"FIJI","Suva"},
                     {"KIRIBATI","Bairiki"},
                     {"MARSHALL ISLANDS","Dalap-Uliga-Darrit"},
@@ -184,5 +184,44 @@ public class Countries {
                  return new Iter();
              }
          }
+         private static Set<Map.Entry<String, String>> entries = new EntrySet(DATA.length);
+         public Set<Map.Entry<String, String>> entrySet(){
+             return entries;
+         }
+    }
+    static Map<String, String> select(final int size){
+        return new FlyWeightMap(){
+            public Set<Map.Entry<String, String>> entrySet(){
+                return new EntrySet(size);
+            }
+        };
+    }
+    static Map<String, String> map = new FlyWeightMap();
+    public static Map<String, String> capitals(){
+        return map;
+    }
+    public static Map<String, String> capitals(int size){
+        return select(size);
+    }
+    static List<String> names = new ArrayList<String>(map.keySet());
+    public static List<String> names(){
+        return names;
+    }
+    public static List<String> names(int size){
+        return new ArrayList<String>(select(size).keySet());
+    }
+    public static void main(String[] args){
+        System.out.println(capitals(10));
+        System.out.println(names(10));
+        System.out.println(new HashMap<String, String>(capitals(3)));
+        System.out.println(new LinkedHashMap<String, String>(capitals(3)));
+        System.out.println(new TreeMap<String, String>(capitals(3)));
+        System.out.println(new Hashtable<String, String>(capitals(3)));
+        System.out.println(new HashSet<String>(names(6)));
+        System.out.println(new LinkedHashSet<String>(names(6)));
+        System.out.println(new TreeSet<String>(names(6)));
+        System.out.println(new ArrayList<String>(names(6)));
+        System.out.println(new LinkedList<String>(names(6)));
+        System.out.println(capitals().get("BRAZIL"));
     }
 }
