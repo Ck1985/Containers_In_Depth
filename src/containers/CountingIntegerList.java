@@ -22,6 +22,7 @@ public class CountingIntegerList extends AbstractList<Integer>{
         return this.size;
     }
     public static void main(String[] args){
-        System.out.println(new CountingIntegerList(30));
+        // System.out.println(new CountingIntegerList(30));
+        AbstractList list = new CountingIntegerList(30);
     }
 }
