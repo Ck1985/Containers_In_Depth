@@ -49,9 +49,9 @@ public class Unsupported {
     }
     public static void main(String[] args){
         List<String> list = Arrays.asList("A B C D E F G H I J K L".split(" "));
-        /*test("Modifiable Copy", new ArrayList<String>(list));
+        test("Modifiable Copy", new ArrayList<String>(list));
         test("Array.asList()", list);
-        test("UnmodifiableList()", Collections.unmodifiableList(list));*/
+        test("UnmodifiableList()", Collections.unmodifiableList(list));
         System.out.println(list);
         System.out.println(list.size());
         list.set(1,"W");
