@@ -84,8 +84,20 @@ public class Lists {
         }
     //There are somethings, only LinkedList can do that
     public static void testLinkedList(){
-        List<String> ll = new LinkedList<>();
-        ll.addAll()
+        LinkedList<String> ll = new LinkedList<>();
+        ll.addAll(Countries.names(25));
+        //Treat it like stack:
+        ll.addFirst("One");
+        ll.addFirst("Two");
+        System.out.println("ll: " + ll);
+        //Like "peeking" at the top of stack
+        System.out.println("ll.get: " + ll.getFirst());
+        //Like pop a stack:
+        System.out.println("ll.removeFirst(): " + ll.removeFirst());
+        System.out.println("ll.removeFirst(): " + ll.removeFirst());
+        // Treat like a queue, pulling elemnts off tail end
+        System.out.println("ll.removeLast(): " + ll.removeLast());
+        System.out.println("ll: " + ll);
     }
     public static void main(String[] args){
         /*List<Integer> list = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3,4,5}));
@@ -103,6 +115,13 @@ public class Lists {
         li.remove();
         System.out.println(list);*/
 
-
+        basicTest(new LinkedList<String>(Countries.names(25)));
+        basicTest(new ArrayList<String>(Countries.names(25)));
+        iterMotion(new LinkedList<String>(Countries.names(25)));
+        iterMotion(new ArrayList<String>(Countries.names(25)));
+        iterManipulation(new LinkedList<String>(Countries.names(25)));
+        iterManipulation(new ArrayList<String>(Countries.names(25)));
+        testVisual(new LinkedList<>(Countries.names(25)));
+        testLinkedList();
     }
 }
