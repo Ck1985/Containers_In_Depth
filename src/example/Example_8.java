@@ -20,7 +20,7 @@ class Node<T>{
     }
 }
 class SListIterator<T>{
-    private Node<T> currentNode;
+    Node<T> currentNode;
     public SListIterator(Node<T> currentNode){
         this.currentNode = currentNode;
     }
@@ -42,8 +42,8 @@ class SListIterator<T>{
     }
 }
 class SList<T>{
-    private Node<T> node = new Node<T>(null);
-    public SListIterator<T> iterator(){
+    Node<T> node = new Node<T>(null);
+    SListIterator<T> iterator(){
         return new SListIterator<T>(this.node);
     }
     public String toString(){
@@ -75,8 +75,12 @@ public class Example_8{
         System.out.println("sl: " + sl);
         iterator.remove();
         System.out.println(sl);
+        System.out.println(iterator.currentNode);
         SListIterator<String> iterator2 = sl.iterator();
+        System.out.println(iterator2.currentNode);
+        iterator2.remove();
         iterator2.remove();
         System.out.println(sl);
+        System.out.println(iterator2.currentNode.nextNode);
     }
 }
