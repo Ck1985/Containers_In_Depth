@@ -23,12 +23,36 @@ public class Example_7 {
         System.out.println();
     }
     public static void insertByListIterator(ArrayList<String> arrayList, LinkedList<String> linkedList){
-        ListIterator<String> listIterator = linkedList.listIterator();
-        while(listIterator.hasNext()){
-            arrayList.add(listIterator.next());
+        ListIterator<String> alIterator = arrayList.listIterator();
+        ListIterator<String> llIterator = linkedList.listIterator();
+        while(llIterator.hasNext()){
+            alIterator.add(llIterator.next());
+            alIterator.next();
+        }
+    }
+    public static void insertBackWard(ArrayList<String> arrayList, LinkedList<String> linkedList){
+        ListIterator<String> alIterator = arrayList.listIterator();
+        ListIterator<String> llIterator = linkedList.listIterator();
+        while(alIterator.hasNext()){
+            alIterator.next();
+        }
+        while(llIterator.hasNext()){
+            alIterator.add(llIterator.next());
+            alIterator.previous();
+            alIterator.previous();
         }
     }
     public static void main(String[] args){
-
+        ArrayList<String> arrayList = createArrayList();
+        LinkedList<String> linkedList = createLinkedList();
+        printList(arrayList);
+        printList(linkedList);
+        insertByListIterator(arrayList, linkedList);
+        printList(arrayList);
+        ArrayList<String> arrayList2 = createArrayList();
+        LinkedList<String> linkedList2 = createLinkedList();
+        System.out.println("arrayList2: " + arrayList2);
+        insertBackWard(arrayList2, linkedList2);
+        System.out.println("arrayList2: " + arrayList2);
     }
 }
