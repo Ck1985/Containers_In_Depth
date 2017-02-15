@@ -53,5 +53,20 @@ public class TypesForSets {
         test(new HashSet<HashType>(),HashType.class);
         test(new LinkedHashSet<HashType>(),HashType.class);
         test(new TreeSet<TreeType>(),TreeType.class);
+        // Things that do not work:
+        test(new HashSet<SetType>(),SetType.class);
+        test(new HashSet<TreeType>(),TreeType.class);
+        test(new LinkedHashSet<SetType>(),SetType.class);
+        test(new LinkedHashSet<TreeType>(),TreeType.class);
+        try{
+            test(new TreeSet<SetType>(),SetType.class);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            test(new TreeSet<HashType>(),HashType.class);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
