@@ -21,11 +21,7 @@ public class SpringDetector {
             System.out.println("Key is not found !!!");
         }
     }
-    public static void main(String[] args){
-        try {
+    public static void main(String[] args) throws Exception{
             detectSpring(GroundHog.class);
-        }catch(Exception e){
-            System.out.println(e);
-        }
     }
 }
