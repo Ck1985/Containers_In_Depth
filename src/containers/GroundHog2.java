@@ -11,6 +11,6 @@ public class GroundHog2 extends GroundHog {
         return number;
     }
     public boolean equals(Object object){
-        return (object instanceof GroundHog2) && (this.number == (((GroundHog2)object).number));
+        return (object instanceof GroundHog2) && (this.number == ((GroundHog2)object).number);
     }
 }
