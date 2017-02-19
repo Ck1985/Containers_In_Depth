@@ -10,7 +10,7 @@ public class SpringDetector {
         Constructor<T> gHog = type.getConstructor(int.class);
         Map<GroundHog, Prediction> map = new HashMap<>();
         for(int i = 0; i < 10; i++){
-            map.put(new GroundHog2(i), new Prediction());
+            map.put(gHog.newInstance(i), new Prediction());
         }
         System.out.println("map: " + map);
         GroundHog groundHog = gHog.newInstance(3);
