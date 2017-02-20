@@ -1,10 +1,10 @@
-package containers;
+/*package containers;
 import java.util.*;
 
 /**
  * Created by anonymous on 2/19/2017.
  */
-public class SlowMap<K,V> extends AbstractMap<K,V> {
+/*public class SlowMap<K,V> extends AbstractMap<K,V> {
     private List<K> keys = new ArrayList<>();
     private List<V> values = new ArrayList<>();
     public V put(K key, V value){
@@ -35,4 +35,4 @@ public class SlowMap<K,V> extends AbstractMap<K,V> {
     public static void main(String[] args){
 
     }
-}
+}*/
