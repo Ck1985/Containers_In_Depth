@@ -1,4 +1,5 @@
 package genericsAndCollections;
+import java.lang.reflect.Array;
 import java.util.*;
 import net.mindview.util.*;
 
@@ -8,7 +9,7 @@ import net.mindview.util.*;
 public class DVDApplication {
     private static ArrayList<DVDInfo> dvdList = new ArrayList<>();
     private static DVDInfo dvdInfo = null;
-    static void populateData(){
+    static ArrayList<DVDInfo> populateData(){
         String title = null;
         String genre = null;
         String leadActor = null;
@@ -29,9 +30,14 @@ public class DVDApplication {
             dvdInfo = new DVDInfo(title,genre,leadActor);
             dvdList.add(dvdInfo);
         }
+        return dvdList;
+    }
+    static void showDVDList(){
+        populateData();
         System.out.println(dvdList);
     }
     public static void main(String[] args){
-       populateData();
+        showDVDList();
+        Collections.sort(dvdList);
     }
 }
