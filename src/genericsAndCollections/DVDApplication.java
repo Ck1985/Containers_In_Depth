@@ -13,7 +13,7 @@ public class DVDApplication {
         String title = null;
         String genre = null;
         String leadActor = null;
-        String extraData = TextFile.read("C:\\Users\\Dell Vostro 5459\\IdeaProjects\\Containers_In_Depth\\src\\genericsAndCollections\\dvdinfo.txt");
+        String extraData = TextFile.read("C:\\Users\\caoxu\\IdeaProjects\\Containers_In_Depth\\src\\genericsAndCollections\\dvdinfo.txt");
         String[] arrayData = extraData.split("\n");
         String[] arrayKind;
         for (String string : arrayData){
@@ -33,11 +33,16 @@ public class DVDApplication {
         return dvdList;
     }
     static void showDVDList(){
-        populateData();
         System.out.println(dvdList);
     }
     public static void main(String[] args){
+        populateData();
         showDVDList();
         Collections.sort(dvdList);
+        showDVDList();
+
+        GenreSort gs = new GenreSort();
+        Collections.sort(dvdList,gs);
+        showDVDList();
     }
 }
