@@ -12,7 +12,12 @@ class Dog{
     public String getName(){
         return this.name;
     }
+    public boolean equals(Object object){
+        return (object instanceof Dog) && (this.getName().equals(((Dog)object).getName())) ? true : false;
+    }
 }
+class Cat{}
+class Horse{}
 public class IteratorTest {
     public static void main(String[] args){
         List<Dog> dogList = new ArrayList<>();
