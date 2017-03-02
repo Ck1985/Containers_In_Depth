@@ -12,8 +12,14 @@ class Dog{
     public String getName(){
         return this.name;
     }
+    public void setName(String name){
+        this.name = name;
+    }
     public boolean equals(Object object){
         return (object instanceof Dog) && (this.getName().equals(((Dog)object).getName())) ? true : false;
+    }
+    public int hashCode(){
+        return this.name.length();
     }
 }
 class Cat{}

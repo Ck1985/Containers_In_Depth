@@ -22,5 +22,11 @@ public class MapTest {
         System.out.println("map.get(d1): " + map.get(d1));
         System.out.println("map.get(new Cat()): " + map.get(new Cat()));
         System.out.println(map.size());
+        d1.setName("maginola");
+        System.out.println(map.get(d1));
+        d1.setName("Clover");
+        System.out.println(map.get(new Dog("Clover")));
+        d1.setName("author");
+        System.out.println(map.get(new Dog("Clover")));
     }
 }
