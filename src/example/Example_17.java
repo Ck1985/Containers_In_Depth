@@ -1,6 +1,6 @@
 package example;
 import java.util.*;
-
+import containers.*;
 /**
  * Created by anonymous.vn1985 on 3/4/2017.
  */
@@ -41,11 +41,123 @@ class SlowMap17<K,V> implements Map<K,V>{
         public int hashCode(){
             return this.key == null ? 0 : this.key.hashCode();
         }
+        public String toString(){
+            return this.key + " = " + this.value;
+        }
     }
-
+    public Set<Map.Entry<K,V>> entrySet(){
+        this.entrySet = new HashSet<>();
+        Iterator<K> itKey = this.keys.iterator();
+        Iterator<V> itValue = this.values.iterator();
+        while(itKey.hasNext()){
+            this.entrySet.add(new MapEntry(itKey.next(), itValue.next()));
+        }
+        return entrySet;
+    }
+    private class KeySet extends AbstractSet<K>{
+        public int size(){
+            return keys.size();
+        }
+        public Iterator<K> iterator(){
+            return new Iterator<K>(){
+                int index = -1;
+                public boolean hasNext(){
+                    return index < keys.size() - 1;
+                }
+                public K next(){
+                    return keys.get(++index);
+                }
+                public void remove(){
+                    keys.remove(index--);
+                }
+            };
+        }
+    }
+    public Set<K> keySet(){
+        keySet = new KeySet();
+        return keySet;
+    }
+    public V get(Object key){
+        if (!this.keys.contains(key)){
+            return null;
+        } else {
+            return this.values.get(this.keys.indexOf(key));
+        }
+    }
+    public void clear(){
+        this.keys.clear();
+        this.values.clear();
+    }
+    public boolean containsKey(Object key){
+        return keySet.contains(key);
+    }
+    public V put(K key, V value){
+       if (!this.containsKey(key)){
+           this.keys.add(key);
+           this.values.add(value);
+           return null;
+       } else {
+           V oldValue = this.get(key);
+           this.values.set(this.keys.indexOf(key),value);
+           return oldValue;
+       }
+    }
+    public void putAll(Map<? extends K, ? extends V> map){
+        Set<? extends K> keySet = map.keySet();
+        Collection<? extends V> values = map.values();
+        Iterator<? extends K> iterator = keySet.iterator();
+        Iterator<? extends V> iterator2 = values.iterator();
+        while(iterator.hasNext()){
+            K key = iterator.next();
+            V value = iterator2.next();
+            if(!this.keys.contains(key)) {
+                this.keys.add(key);
+                this.values.add(value);
+            } else {
+                this.values.set(this.keys.indexOf(key),value);
+            }
+        }
+    }
+    public int size(){
+        return this.keys.size();
+    }
+    public boolean containsValue(Object value){
+        return this.values.contains(value);
+    }
+    public boolean isEmpty(){
+        return this.keys.size() == 0;
+    }
+    public Collection<V> values(){
+        return this.values;
+    }
+    public V remove(Object key){
+        if (this.keys.contains(key) == false || this.values.get(this.keys.indexOf(key)) == null){
+            return null;
+        } else {
+            V removeValue = this.values.get(this.keys.indexOf(key));
+            this.values.remove(this.keys.indexOf(key));
+            this.keys.remove(key);
+            return removeValue;
+        }
+    }
+    public String toString(){
+        return this.entrySet().toString();
+    }
 }
 public class Example_17 {
+    public static void showMap(SlowMap17<String, String> slowMap){
+    }
+    public static void testSlowMap17(SlowMap17<String,String> slowMap){
+        Map<String,String> contriesMap = Countries.capitals(15);
+        //System.out.println(contriesMap);
+        slowMap.putAll(contriesMap);
+        System.out.println("slowMap17: " + slowMap);
+        /*slowMap.put("MacOs", "Steve Job");
+        slowMap.put("Window", "Bill Gate");
+        slowMap.put("Linux","???");
+        System.out.println("slowMap17: " + slowMap);*/
+    }
     public static void main(String[] args){
-
+        testSlowMap17(new SlowMap17<String,String>());
     }
 }
