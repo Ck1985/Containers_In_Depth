@@ -9,7 +9,6 @@ class SlowMap<K, V> extends AbstractMap<K, V>{
     private List<K> keys = new ArrayList<>();
     private List<V> values = new ArrayList<>();
     private Set<Map.Entry<K,V>> entrySet = null;
-    private Set<K> keySet = null;
     private class MapEntry implements Map.Entry<K, V>{
         private K key;
         private V value;
