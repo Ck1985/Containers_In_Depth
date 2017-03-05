@@ -1,19 +1,25 @@
 package example;
 import java.util.*;
 import containers.*;
+
 /**
- * Created by anonymous.vn1985 on 3/4/2017.
+ * This is SlowMap Map, it implements Map interface
  */
+
 class SlowMap17<K,V> implements Map<K,V>{
     private List<K> keys = new ArrayList<>();
     private List<V> values = new ArrayList<>();
-    private Set<Map.Entry<K,V>> entrySet = null;
+    private Set<Map.Entry<K,V>> entrySet = new HashSet<>();
     private Set<K> keySet = null;
+
+    SlowMap17(){
+        this.keySet = this.keySet();
+    }
 
     private class MapEntry implements Map.Entry<K,V>{
         private K key;
         private V value;
-        public MapEntry(K key, V value){
+        MapEntry(K key, V value){
             this.key = key;
             this.value = value;
         }
@@ -28,6 +34,7 @@ class SlowMap17<K,V> implements Map<K,V>{
             this.value = newValue;
             return oldValue;
         }
+        @SuppressWarnings("unchecked")
         public boolean equals(Object object){
             if (!MapEntry.class.isInstance(object)){
                 return false;
@@ -46,7 +53,6 @@ class SlowMap17<K,V> implements Map<K,V>{
         }
     }
     public Set<Map.Entry<K,V>> entrySet(){
-        this.entrySet = new HashSet<>();
         Iterator<K> itKey = this.keys.iterator();
         Iterator<V> itValue = this.values.iterator();
         while(itKey.hasNext()){
@@ -92,30 +98,23 @@ class SlowMap17<K,V> implements Map<K,V>{
         return keySet.contains(key);
     }
     public V put(K key, V value){
+        V oldValue = this.get(key);
        if (!this.containsKey(key)){
            this.keys.add(key);
            this.values.add(value);
-           return null;
        } else {
-           V oldValue = this.get(key);
            this.values.set(this.keys.indexOf(key),value);
-           return oldValue;
        }
+       return oldValue;
     }
+
     public void putAll(Map<? extends K, ? extends V> map){
         Set<? extends K> keySet = map.keySet();
         Collection<? extends V> values = map.values();
         Iterator<? extends K> iterator = keySet.iterator();
         Iterator<? extends V> iterator2 = values.iterator();
         while(iterator.hasNext()){
-            K key = iterator.next();
-            V value = iterator2.next();
-            if(!this.keys.contains(key)) {
-                this.keys.add(key);
-                this.values.add(value);
-            } else {
-                this.values.set(this.keys.indexOf(key),value);
-            }
+            this.put(iterator.next(),iterator2.next());
         }
     }
     public int size(){
@@ -145,17 +144,14 @@ class SlowMap17<K,V> implements Map<K,V>{
     }
 }
 public class Example_17 {
-    public static void showMap(SlowMap17<String, String> slowMap){
-    }
     public static void testSlowMap17(SlowMap17<String,String> slowMap){
-        Map<String,String> contriesMap = Countries.capitals(15);
-        //System.out.println(contriesMap);
-        slowMap.putAll(contriesMap);
-        System.out.println("slowMap17: " + slowMap);
-        /*slowMap.put("MacOs", "Steve Job");
+        Map<String,String> countriesMap = Countries.capitals(10);
+        slowMap.putAll(countriesMap);
+        System.out.println("slowMap17: \n" + slowMap);
+        slowMap.put("MacOs", "Steve Job");
         slowMap.put("Window", "Bill Gate");
         slowMap.put("Linux","???");
-        System.out.println("slowMap17: " + slowMap);*/
+        System.out.println("slowMap17: \n" + slowMap);
     }
     public static void main(String[] args){
         testSlowMap17(new SlowMap17<String,String>());
