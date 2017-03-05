@@ -29,7 +29,7 @@ class SlowSet<K> implements Set<K>{
         return this.backedList.toString();
     }
 }
-public class SlowSetTest {
+public class Example_18 {
     public static void main(String[] args){
         SlowSet<String> slowSet = new SlowSet<>();
         slowSet.add("a");
