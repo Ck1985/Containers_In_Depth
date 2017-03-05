@@ -9,7 +9,7 @@ import containers.*;
 class SlowMap17<K,V> implements Map<K,V>{
     private List<K> keys = new ArrayList<>();
     private List<V> values = new ArrayList<>();
-    private Set<Map.Entry<K,V>> entrySet = new HashSet<>();
+    private Set<Map.Entry<K,V>> entrySet = null;
     private Set<K> keySet = null;
 
     SlowMap17(){
@@ -53,11 +53,13 @@ class SlowMap17<K,V> implements Map<K,V>{
         }
     }
     public Set<Map.Entry<K,V>> entrySet(){
+        Set<Map.Entry<K,V>> updateEntrySet = new HashSet<>();
         Iterator<K> itKey = this.keys.iterator();
         Iterator<V> itValue = this.values.iterator();
         while(itKey.hasNext()){
-            this.entrySet.add(new MapEntry(itKey.next(), itValue.next()));
+            updateEntrySet.add(new MapEntry(itKey.next(), itValue.next()));
         }
+        this.entrySet = updateEntrySet;
         return entrySet;
     }
     private class KeySet extends AbstractSet<K>{
@@ -83,8 +85,9 @@ class SlowMap17<K,V> implements Map<K,V>{
         keySet = new KeySet();
         return keySet;
     }
+    @SuppressWarnings("unchecked")
     public V get(Object key){
-        if (!this.keys.contains(key)){
+        if (!this.keys.contains((K)key)){
             return null;
         } else {
             return this.values.get(this.keys.indexOf(key));
@@ -94,8 +97,9 @@ class SlowMap17<K,V> implements Map<K,V>{
         this.keys.clear();
         this.values.clear();
     }
+    @SuppressWarnings("unchecked")
     public boolean containsKey(Object key){
-        return keySet.contains(key);
+        return keySet.contains((K)key);
     }
     public V put(K key, V value){
         V oldValue = this.get(key);
@@ -120,8 +124,9 @@ class SlowMap17<K,V> implements Map<K,V>{
     public int size(){
         return this.keys.size();
     }
+    @SuppressWarnings("unchecked")
     public boolean containsValue(Object value){
-        return this.values.contains(value);
+        return this.values.contains((V)value);
     }
     public boolean isEmpty(){
         return this.keys.size() == 0;
@@ -129,8 +134,9 @@ class SlowMap17<K,V> implements Map<K,V>{
     public Collection<V> values(){
         return this.values;
     }
+    @SuppressWarnings("unchecked")
     public V remove(Object key){
-        if (this.keys.contains(key) == false || this.values.get(this.keys.indexOf(key)) == null){
+        if (!this.keys.contains((K)key) || this.values.get(this.keys.indexOf((K)key)) == null){
             return null;
         } else {
             V removeValue = this.values.get(this.keys.indexOf(key));
@@ -144,14 +150,22 @@ class SlowMap17<K,V> implements Map<K,V>{
     }
 }
 public class Example_17 {
-    public static void testSlowMap17(SlowMap17<String,String> slowMap){
+    private static void testSlowMap17(SlowMap17<String,String> slowMap){
         Map<String,String> countriesMap = Countries.capitals(10);
         slowMap.putAll(countriesMap);
         System.out.println("slowMap17: \n" + slowMap);
         slowMap.put("MacOs", "Steve Job");
         slowMap.put("Window", "Bill Gate");
         slowMap.put("Linux","???");
-        System.out.println("slowMap17: \n" + slowMap);
+        System.out.println("slowMap17: size = " + slowMap.size() + "\n" + slowMap);
+        slowMap.remove("Window");
+        slowMap.remove("Linux");
+        System.out.println("slowMap17: size = " + slowMap.size() + "\n" + slowMap);
+        System.out.println("slowMap17.containsKey(\"MacOs\"): " + slowMap.containsKey("MacOs"));
+        System.out.println("slowMap17.containsValue(\"Luanda\"): " + slowMap.containsValue("Luanda"));
+        System.out.println("slowMap17.containsKey(xxx): " + slowMap.containsKey("xxx"));
+        slowMap.clear();
+        System.out.println(slowMap);
     }
     public static void main(String[] args){
         testSlowMap17(new SlowMap17<String,String>());
