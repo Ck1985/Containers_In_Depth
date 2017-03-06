@@ -6,6 +6,7 @@ import java.util.*;
 class SlowSet<K> implements Set<K>{
     private List<K> backedList = new ArrayList<>();
     public Object[] toArray(){
+
     }
     public int size(){
         return this.backedList.size();
