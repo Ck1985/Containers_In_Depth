@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>containers.Countries</OriginalElement>
+  <nodes>
+    <node x="794.625" y="1124.0">containers.Countries.FlyWeightMap.EntrySet.Iter</node>
+    <node x="397.2559523809523" y="0.0">java.util.AbstractMap</node>
+    <node x="928.0705438629166" y="129.89048239895698">containers.Countries</node>
+    <node x="770.125" y="844.0">containers.Countries.FlyWeightMap.Entry</node>
+    <node x="750.1517857142857" y="1292.0">containers.Countries.FlyWeightMap.EntrySet</node>
+    <node x="864.7142857142857" y="599.0">containers.Countries.FlyWeightMap</node>
+    <node x="90.5" y="1124.0">java.util.AbstractSet</node>
+    <node x="365.46428571428567" y="522.0">java.util.Map.Entry</node>
+    <node x="0.0" y="800.0">java.util.AbstractMap.SimpleImmutableEntry</node>
+    <node x="385.0" y="800.0">java.util.AbstractMap.SimpleEntry</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.AbstractMap.SimpleEntry" target="java.util.AbstractMap">
+      <point x="91.25" y="-137.0" />
+      <point x="657.9642857142857" y="497.0" />
+      <point x="651.7559523809523" y="497.0" />
+      <point x="0.0" y="236.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.EntrySet" target="java.util.AbstractSet">
+      <point x="-55.875" y="-59.5" />
+      <point x="768.7767857142857" y="1272.0" />
+      <point x="182.5" y="1272.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="java.util.AbstractMap.SimpleImmutableEntry" target="java.util.Map.Entry">
+      <point x="91.25" y="-137.0" />
+      <point x="273.75" y="780.0" />
+      <point x="412.46428571428567" y="780.0" />
+      <point x="-94.0" y="114.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap" target="java.util.AbstractMap">
+      <point x="-27.25" y="-14.5" />
+      <point x="964.4642857142857" y="497.0" />
+      <point x="821.4226190476189" y="497.0" />
+      <point x="169.66666666666663" y="236.0" />
+    </edge>
+    <edge source="java.util.AbstractMap.SimpleEntry" target="java.util.Map.Entry">
+      <point x="-91.25" y="-137.0" />
+      <point x="476.25" y="780.0" />
+      <point x="506.46428571428567" y="780.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.Entry" target="java.util.Map.Entry">
+      <point x="-54.75" y="-93.0" />
+      <point x="824.875" y="770.0" />
+      <point x="600.4642857142857" y="770.0" />
+      <point x="94.0" y="114.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.EntrySet" target="containers.Countries.FlyWeightMap">
+      <point x="55.875" y="-59.5" />
+      <point x="880.5267857142857" y="1272.0" />
+      <point x="1029.7142857142858" y="1272.0" />
+      <point x="1029.7142857142858" y="780.0" />
+      <point x="1018.9642857142857" y="780.0" />
+      <point x="27.25" y="14.5" />
+    </edge>
+    <edge source="containers.Countries" target="containers.Countries.FlyWeightMap">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="containers.Countries" target="containers.Countries.FlyWeightMap.EntrySet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap" target="java.util.Map.Entry">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="java.util.AbstractSet" target="java.util.AbstractMap.SimpleImmutableEntry">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap" target="containers.Countries.FlyWeightMap.EntrySet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.EntrySet" target="containers.Countries.FlyWeightMap.EntrySet.Iter">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="java.util.AbstractMap.SimpleImmutableEntry" target="java.util.AbstractMap">
+      <point x="-91.25" y="-137.0" />
+      <point x="91.25" y="497.0" />
+      <point x="482.08928571428567" y="497.0" />
+      <point x="-169.66666666666663" y="236.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.Entry" target="containers.Countries.FlyWeightMap">
+      <point x="54.75" y="-93.0" />
+      <point x="934.375" y="780.0" />
+      <point x="964.4642857142857" y="780.0" />
+      <point x="-27.25" y="14.5" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.EntrySet.Iter" target="containers.Countries.FlyWeightMap.Entry">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap.EntrySet.Iter" target="containers.Countries.FlyWeightMap.EntrySet">
+      <point x="42.50000000000003" y="59.0" />
+      <point x="922.125" y="1262.0" />
+      <point x="843.2767857142857" y="1262.0" />
+      <point x="18.625" y="-59.5" />
+    </edge>
+    <edge source="containers.Countries.FlyWeightMap" target="containers.Countries">
+      <point x="27.25" y="-14.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0647798742138364" x="926.9285292380391" y="845.1210868281158" />
+  <SelectedNodes>
+    <node>containers.Countries</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
