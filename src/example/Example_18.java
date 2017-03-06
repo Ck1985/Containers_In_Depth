@@ -6,6 +6,9 @@ import java.util.*;
 class SlowSet<K> implements Set<K>{
     private List<K> backedList = new ArrayList<>();
 
+    public int hashCode(){
+        return this.backedList.hashCode();
+    }
     public Object[] toArray(){
         return this.backedList.toArray();
     }
@@ -67,5 +70,31 @@ public class Example_18 {
         System.out.println(slowSet);
         slowSet.add("There");
         System.out.println(slowSet);
+        List<String> list = Arrays.asList("You", "cute", "pie");
+        slowSet.addAll(list);
+        System.out.println(slowSet);
+        System.out.println("size(): " + slowSet.size());
+        System.out.println("slowSet.contains(\"You\"): " + slowSet.contains("You"));
+        System.out.println("slowSet.contains(\"me\"): " + slowSet.contains("me"));
+        System.out.println("slowSet.containsAll(list): " + slowSet.contains(list));
+        SlowSet<String> ss2 = new SlowSet<>();
+        System.out.println("slowSet.containsAll(ss2): " + slowSet.containsAll(ss2));
+        System.out.println("ss2.containsAll(slowset): " + ss2.containsAll(slowSet));
+        ss2.add("You");
+        ss2.add("cute");
+        slowSet.removeAll(ss2);
+        System.out.println(slowSet);
+        System.out.println("slowset.hashCode(): " + slowSet.hashCode());
+        List<String> list2 = Arrays.asList("Hi", "There", "pie");
+        ss2.remove("You");
+        System.out.println(ss2);
+        System.out.println("ss2.isEmpty(): " + ss2.isEmpty());
+        ss2.addAll(list2);
+        System.out.println("ss2: " + ss2);
+        String[] newArray = new String[3];
+        System.out.println("slowSet.toArray(newArray): " + slowSet.toArray(newArray));
+        for(int i = 0; i < newArray.length; i++){
+            System.out.print(newArray[i] + " ");
+        }
     }
 }
