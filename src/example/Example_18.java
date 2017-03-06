@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Created by anonymous on 3/5/2017.
  */
-/*class SlowSet<K> implements Set<K>{
+class SlowSet<K> implements Set<K>{
     private List<K> backedList = new ArrayList<>();
 
     public Object[] toArray(){
@@ -65,5 +65,7 @@ public class Example_18 {
         SlowSet<String> slowSet = new SlowSet<>();
         slowSet.add("Hi");
         System.out.println(slowSet);
+        slowSet.add("There");
+        System.out.println(slowSet);
     }
-}*/
+}
