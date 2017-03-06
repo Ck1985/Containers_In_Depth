@@ -6,12 +6,12 @@ import java.util.concurrent.*;
  * Created by anonymous on 2/18/2017.
  */
 public class Maps {
-    public static void printKeys(Map<Integer, String> map){
+    private static void printKeys(Map<Integer, String> map){
         System.out.println("Size: " + map.size());
         System.out.println("Keys: ");
         System.out.println(map.keySet());
     }
-    public static void test(Map<Integer, String> map){
+    private static void test(Map<Integer, String> map){
         System.out.println("SimpleName of Map: " + map.getClass().getName());
         map.putAll(new CountingMapData(25));
         // Map has 'Set' behavior for keys
