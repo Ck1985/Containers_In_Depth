@@ -79,12 +79,12 @@ public class Example_18 {
         System.out.println("slowSet.containsAll(list): " + slowSet.contains(list));
         SlowSet<String> ss2 = new SlowSet<>();
         System.out.println("slowSet.containsAll(ss2): " + slowSet.containsAll(ss2));
-        System.out.println("ss2.containsAll(slowset): " + ss2.containsAll(slowSet));
+        System.out.println("ss2.containsAll(slowSet): " + ss2.containsAll(slowSet));
         ss2.add("You");
         ss2.add("cute");
         slowSet.removeAll(ss2);
         System.out.println(slowSet);
-        System.out.println("slowset.hashCode(): " + slowSet.hashCode());
+        System.out.println("slowSet.hashCode(): " + slowSet.hashCode());
         List<String> list2 = Arrays.asList("Hi", "There", "pie");
         ss2.remove("You");
         System.out.println(ss2);
@@ -93,7 +93,7 @@ public class Example_18 {
         System.out.println("ss2: " + ss2);
         String[] newArray = new String[3];
         System.out.println("slowSet.toArray(newArray): " + slowSet.toArray(newArray));
-        for(int i = 0; i < newArray.length; i++){
+        for (int i = 0; i < newArray.length; i++){
             System.out.print(newArray[i] + " ");
         }
     }
