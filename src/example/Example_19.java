@@ -50,6 +50,5 @@ public class Example_19 {
         }
         System.out.println();
         System.out.println(shm.keySet());
-        // System.out.println(shm.createMap(sourceArray));
     }
 }
