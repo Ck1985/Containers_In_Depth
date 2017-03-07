@@ -11,7 +11,7 @@ public class Maps {
         System.out.println("Keys: ");
         System.out.println(map.keySet());
     }
-    private static void test(Map<Integer, String> map){
+    public static void test(Map<Integer, String> map){
         System.out.println("SimpleName of Map: " + map.getClass().getName());
         map.putAll(new CountingMapData(25));
         // Map has 'Set' behavior for keys
