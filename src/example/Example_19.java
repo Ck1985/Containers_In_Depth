@@ -16,27 +16,21 @@ class SimpleHashMap_19 extends SimpleHashMap<String,Integer>{
         for(int i = 0; i < source.length; i++){
             this.put(source[i],0);
         }
+        System.out.println(this);
         Set<String> keySet = this.keySet();
+        System.out.println(keySet);
         Iterator<String> it = keySet.iterator();
         while (it.hasNext()){
             int count = 0;
             String itNext = it.next();
-            for (String key : keySet){
-                if(itNext.equals(key)){
+            for (String string : source){
+                if(itNext.equals(string)){
                     count++;
                 }
             }
             this.put(itNext,count);
         }
         return this;
-    }
-    public Set<String> keySet(){
-        Set<String> keySet = new HashSet<>();
-        Iterator<Map.Entry<String,Integer>> itEntrySet = this.entrySet().iterator();
-        while (itEntrySet.hasNext()){
-            keySet.add(itEntrySet.next().getKey());
-        }
-        return keySet;
     }
 }
 public class Example_19 {
@@ -45,10 +39,9 @@ public class Example_19 {
         String source = shm.readFile("C:\\Users\\caoxu\\IdeaProjects\\Containers_In_Depth\\src\\example\\TestFile.txt");
         System.out.println(source);
         String[] sourceArray = shm.arrayWords(source);
-        for (String string : sourceArray){
+        for(String string : sourceArray){
             System.out.print(string + ", ");
         }
-        System.out.println();
-        System.out.println(shm.keySet());
+        System.out.println(shm.createMap(sourceArray));
     }
 }

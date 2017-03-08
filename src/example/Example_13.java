@@ -19,6 +19,7 @@ class AssociativeArray extends LinkedHashMap<String, Integer>{
             this.put(source[i], 0);
         }
         Set<String> keySet = this.keySet();
+        System.out.println(keySet);
         Iterator<String> iterator = keySet.iterator();
         while(iterator.hasNext()){
             String element = iterator.next();
@@ -58,7 +59,7 @@ public class Example_13 {
         //--------------------------------------------------------------------//
 
         AssociativeArray wordsMap = new AssociativeArray();
-        String source = wordsMap.readFile("C:\\Users\\Dell Vostro 5459\\IdeaProjects\\Containers_In_Depth\\src\\example\\Example_13.java");
+        String source = wordsMap.readFile("C:\\Users\\caoxu\\IdeaProjects\\Containers_In_Depth\\src\\example\\TestFile.txt");
         System.out.println(source);
         String[] sourceArray = wordsMap.arrayWords(source);
         System.out.println(wordsMap.createMap(sourceArray));
