@@ -63,6 +63,7 @@ class SimpleHashMap_20<K,V> extends SimpleHashMap<K,V>{
 }
 
 public class Example_20 {
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         SimpleHashMap_20 shm = new SimpleHashMap_20();
         shm.put("Terry", 5);
