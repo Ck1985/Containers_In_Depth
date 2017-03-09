@@ -4,13 +4,16 @@ import java.util.*;
 /**
  * This is SlowMap Map, it implements Map interafce
  */
+
+
 public class SimpleHashMap<K,V> extends AbstractMap<K,V>{
     // Choose a prime number for hash table
     //Size, to achieve a uniform distribution
-    private static final int SIZE = 97;
+    protected static final int SIZE = 97;
     @SuppressWarnings("unchecked")
     // We can not have a physical of array generic, but we can upcast to it
-    LinkedList<Map.Entry<K,V>>[] buckets = new LinkedList[this.SIZE];
+    protected LinkedList<Map.Entry<K,V>>[] buckets = new LinkedList[SIZE];
+
     public V put(K key, V value){
         V oldValue = null;
         int index = Math.abs(key.hashCode()) % SIZE;
