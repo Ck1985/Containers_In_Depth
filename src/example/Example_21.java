@@ -6,7 +6,7 @@ import java.util.*;
  * This is SimpleHashMap_21 Map, it implements Map interafce
  */
 
-class SimpleHashMap_21<K,V> extends SimpleHashMap<K,V>{
+class SimpleHashMap_21<K,V> extends containers.SimpleHashMap<K,V>{
     private LinkedHashMap<Map.Entry<K,V>, Integer> mapProbies = new LinkedHashMap<>();
     private int checkCollision(Map.Entry<K,V> mapEntry){
         boolean collision = false;
