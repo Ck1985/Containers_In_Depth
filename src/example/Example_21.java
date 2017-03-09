@@ -80,7 +80,7 @@ public class Example_21 {
         shm.put("C",5);
         shm.put("B",9);
         shm.put("B",9);
-        shm.put("B",9);
+
         shm.showProbies();
         SimpleHashMap_21 shm2 = new SimpleHashMap_21();
         shm2.putAll(Countries.capitals(10));
