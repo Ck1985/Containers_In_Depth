@@ -1,9 +1,12 @@
 package example;
+
 import java.util.*;
 import containers.*;
+
 /**
- * This is SlowMap Map, it implements Map interafce
+ * This is SimpleHashMap23_25 Map, it implements Map interafce
  */
+
 class Entry23_25<K,V> implements Map.Entry<K,V>{
     private K key;
     private V value;
@@ -43,23 +46,34 @@ class Entry23_25<K,V> implements Map.Entry<K,V>{
 }
 class SimpleHashMap23_25<K,V> implements Map<K,V>{
     private static final int SIZE = 97;
+    private int size;
     @SuppressWarnings("unchecked")
     private LinkedList<Entry23_25<K,V>>[] buckets = new LinkedList[SIZE];
+    private Set<Map.Entry<K,V>> entrySet = null;
     final class EntrySet extends AbstractSet<Map.Entry<K,V>>{
         public final int size(){
-            return
+            return SimpleHashMap23_25.this.size();
         }
         public final Iterator<Map.Entry<K,V>> iterator(){
-            public int size(){
 
-            }
-            return new Iterator<>(){
-                int index = -1;
+            return new Iterator<Map.Entry<K,V>>(){
+                private int index = -1;
                 public boolean hasNext(){
-                    return index <
+                    return index < SimpleHashMap23_25.this.size() - 1;
+                }
+                public Map.Entry<K,V> next(){
+                    return
                 }
             }
         }
+    }
+    public int size(){
+        for(LinkedList<Entry23_25<K,V>> bucket : buckets){
+            if (bucket != null){
+                this.size = this.size + bucket.size();
+            }
+        }
+        return this.size;
     }
     public V put(K key, V value){
         int index = Math.abs(key.hashCode()) % SIZE;
@@ -131,9 +145,9 @@ class SimpleHashMap23_25<K,V> implements Map<K,V>{
         }
         return keySet;
     }*/
-    public int size(){
+    /*public int size(){
         return this.entrySet().size();
-    }
+    }*/
     public int hashCode(){
         return this.entrySet().hashCode();
     }
