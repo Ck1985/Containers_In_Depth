@@ -54,6 +54,7 @@ class SimpleHashMap<K,V> extends AbstractMap<K,V>{
         while(iterator.hasNext()){
             MapEntry<K,V> iPair = iterator.next();
             if (iPair.getKey().equals(key)){
+                oldValue = iPair.getValue();
                 iterator.set(pair);
                 found = true;
                 break;

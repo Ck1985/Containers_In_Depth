@@ -5,7 +5,6 @@ import java.util.*;
  * This is SlowMap Map, it implements Map interafce
  */
 
-
 public class SimpleHashMap<K,V> extends AbstractMap<K,V>{
     // Choose a prime number for hash table
     //Size, to achieve a uniform distribution
