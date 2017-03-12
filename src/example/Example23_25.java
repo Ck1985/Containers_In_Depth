@@ -193,19 +193,6 @@ class SimpleHashMap23_25<K,V> implements Map<K,V>{
         }
         return value;
     }
-    /*public Set<Map.Entry<K,V>> entrySet(){
-        Set<Map.Entry<K,V>> entrySet = new HashSet<>();
-        for (LinkedList<Entry23_25<K,V>> bucket : this.buckets){
-            if (bucket == null){
-                continue;
-            } else {
-                for (Entry23_25<K,V> entry : bucket){
-                    entrySet.add(entry);
-                }
-            }
-        }
-        return entrySet;
-    }*/
     public void clear(){
         for (LinkedList<Entry23_25<K,V>> bucket : buckets){
             if (bucket != null){
@@ -220,16 +207,6 @@ class SimpleHashMap23_25<K,V> implements Map<K,V>{
             this.put(keyMap, valueMap);
         }
     }
-    /*public Set<K> keySet(){
-        Set<K> keySet = new HashSet<>();
-        for (Map.Entry<K,V> entry : this.entrySet()){
-            keySet.add(entry.getKey());
-        }
-        return keySet;
-    }*/
-    /*public int size(){
-        return this.entrySet().size();
-    }*/
     public int hashCode(){
         return this.entrySet().hashCode();
     }

@@ -42,7 +42,7 @@ class SListIterator<T> {
     }
 }
 class SList<T>{
-    Node<T> node = new Node<T>(null);
+    private Node<T> node = new Node<T>(null);
     SListIterator<T> iterator() {
         return new SListIterator<T>(this.node);
     }
