@@ -46,34 +46,116 @@ class Entry23_25<K,V> implements Map.Entry<K,V>{
 }
 class SimpleHashMap23_25<K,V> implements Map<K,V>{
     private static final int SIZE = 97;
-    private int size;
     @SuppressWarnings("unchecked")
     private LinkedList<Entry23_25<K,V>>[] buckets = new LinkedList[SIZE];
-    private Set<Map.Entry<K,V>> entrySet = null;
-    final class EntrySet extends AbstractSet<Map.Entry<K,V>>{
-        public final int size(){
+    private EntrySet entrySet = new EntrySet();
+    private KeySet keySet = new KeySet();
+    // Three methods below for properly Iterator:
+    private int firstNonEmptyLinkedList(){
+        if (this.buckets.length < 1){
+            return -1;
+        }
+        for (int i = 0; i < SIZE; i++){
+            if (this.buckets[i] != null){
+                return i;
+            }
+        }
+        return -1;
+    }
+    private int start(int i){
+        int first = this.firstNonEmptyLinkedList();
+        if (i < first){
+            return -1;
+        } else if (i == first){
+            return 0;
+        } else {
+            int indexI = 0;
+            for (int j = first; j < i; j++){
+                if (this.buckets[j] != null){
+                    indexI += this.buckets[j].size();
+                }
+            }
+            return indexI;
+        }
+    }
+    private int end(int i){
+        int first = this.firstNonEmptyLinkedList();
+        if (i < first){
+            return -1;
+        } else {
+            return start(i) + ((buckets[i] == null) ? 0 :buckets[i].size());
+        }
+    }
+    //--------------------------------------------------------------//
+    class EntrySet extends AbstractSet<Map.Entry<K,V>>{
+        public int size(){
             return SimpleHashMap23_25.this.size();
         }
-        public final Iterator<Map.Entry<K,V>> iterator(){
-
+        public Iterator<Map.Entry<K,V>> iterator(){
             return new Iterator<Map.Entry<K,V>>(){
                 private int index = -1;
                 public boolean hasNext(){
                     return index < SimpleHashMap23_25.this.size() - 1;
                 }
                 public Map.Entry<K,V> next(){
-                    return
+                    int j = ++index;
+                    for (int i = 0; i < SIZE; i++){
+                        if (start(i) <= index && index < end(i)){
+                            return new Entry23_25<K,V>(
+                                    buckets[i].get(index - start(i)).getKey(),
+                                    buckets[i].get(index - start(i)).getValue()
+                            );
+                        }
+                    }
+                    return null;
                 }
-            }
+                public void remove(){
+                    for (int i = 0; i < SIZE; i++){
+                        if (start(i) <= index && index < end(i)){
+                            buckets[i].remove(index - start(i));
+                            index--;
+                        }
+                    }
+                }
+            };
+        }
+    }
+    public Set<Map.Entry<K,V>> entrySet(){
+        return entrySet;
+    }
+    public Set<K> keySet(){
+        return keySet;
+    }
+    class KeySet extends AbstractSet<K>{
+        public int size(){
+            return SimpleHashMap23_25.this.size();
+        }
+        public Iterator<K> iterator(){
+            return new Iterator<K>(){
+            private int index = -1;
+                public boolean hasNext(){
+                    return index < SimpleHashMap23_25.this.size() - 1;
+                }
+                public K next(){
+                    int j = ++index;
+                    for (int i = 0; i < SIZE; i++){
+                        if (start(i) <= index && index < end(i)){
+                            return buckets[i].get(index - start(i)).getKey();
+                        }
+                    }
+                    return null;
+                }
+            };
         }
     }
     public int size(){
+        int result = 0;
         for(LinkedList<Entry23_25<K,V>> bucket : buckets){
             if (bucket != null){
-                this.size = this.size + bucket.size();
+                result = result + bucket.size();
             }
         }
-        return this.size;
+        return result;
     }
     public V put(K key, V value){
         int index = Math.abs(key.hashCode()) % SIZE;
@@ -244,7 +326,7 @@ public class Example23_25 {
         System.out.println("shm2: " + shm2);
         shm2.remove("BOTSWANA");
         System.out.println("shm2: " + shm2 + "\nshm.equals(shm2): " + shm2.equals(shm));
-        /*shm.entrySet().clear();
-        System.out.println(shm);*/
+        shm.entrySet().clear();
+        System.out.println(shm);
     }
 }
