@@ -1,17 +1,17 @@
 package example;
 import java.util.*;
 
-class Node<T>{
+class Node<T> {
     private T valueNode;
     Node<T> nextNode;
-    public Node(T valueNode, Node<T> nextNode){
+    public Node(T valueNode, Node<T> nextNode) {
         this.valueNode = valueNode;
         this.nextNode = nextNode;
     }
-    public Node(T valueNode){
+    public Node(T valueNode) {
         this(valueNode,null);
     }
-    public String toString(){
+    public String toString() {
         if(this.valueNode == null){
             return null;
         }else{
@@ -19,19 +19,19 @@ class Node<T>{
         }
     }
 }
-class SListIterator<T>{
+class SListIterator<T> {
     Node<T> currentNode;
-    public SListIterator(Node<T> currentNode){
+    public SListIterator(Node<T> currentNode) {
         this.currentNode = currentNode;
     }
-    public boolean hasNext(){
+    public boolean hasNext() {
         return this.currentNode.nextNode != null;
     }
-    public Node<T> next(){
+    public Node<T> next() {
         currentNode = currentNode.nextNode;
         return currentNode;
     }
-    public void insert(T valueNewNode){
+    public void insert(T valueNewNode) {
         currentNode.nextNode = new Node<T>(valueNewNode, currentNode.nextNode);
         currentNode = currentNode.nextNode;
     }
@@ -43,13 +43,13 @@ class SListIterator<T>{
 }
 class SList<T>{
     Node<T> node = new Node<T>(null);
-    SListIterator<T> iterator(){
+    SListIterator<T> iterator() {
         return new SListIterator<T>(this.node);
     }
-    public String toString(){
-        if(node.nextNode == null){
+    public String toString() {
+        if (node.nextNode == null){
             return "SList: []";
-        }else{
+        } else {
             SListIterator<T> sl = this.iterator();
             StringBuilder sb = new StringBuilder("[");
             while(sl.hasNext()){
