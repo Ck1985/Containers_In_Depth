@@ -1,13 +1,13 @@
-package containers;
+package pets;
 
 /**
  * This is SlowMap Map, it implements Map interafce
  */
-public class Pet extends Individual{
-    public Pet(String name){
+public class Rodent extends Pet {
+    public Rodent(String name){
         super(name);
     }
-    public Pet(){
+    public Rodent(){
         super();
     }
 }
