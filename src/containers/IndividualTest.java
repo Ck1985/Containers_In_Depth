@@ -1,10 +1,17 @@
 package containers;
 
 import java.util.*;
-import typeinfo.pets.*;
 import holding.MapOfList;
 /**
- * This is SlowMap Map, it implements Map interafce
+ * This is created by anonymous.vn1985@gmail.com
  */
 public class IndividualTest {
+    public static void main(String[] args){
+        Set<Individual> pets = new TreeSet<>();
+        /*for (List<? extends Pet> lp : MapOfList.petPeople.values()){
+            for (Pet p : lp){
+                pets.add(p);
+            }
+        }*/
+    }
 }

@@ -2,9 +2,9 @@ package containers;
 
 import java.util.*;
 import typeinfo.pets.*;
-
+import holding.*;
 /**
- * This is SlowMap Map, it implements Map interafce
+ * This is created by anonymous.vn1985@gmail.com, it implements Map interafce
  */
 
 public class Individual implements Comparable<Individual>{
