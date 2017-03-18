@@ -1,11 +1,9 @@
 <component name="libraryTable">
   <library name="OwnLibraryTool">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../OwnLibraryTool/out/artifacts/OwnLibraryTool_jar/OwnLibraryTool.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../OwnLibraryTool.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../OwnLibraryTool/out/artifacts/OwnLibraryTool_jar/OwnLibraryTool.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

@@ -1,5 +1,6 @@
 package containers;
 
+import java.util.*;
 /**
  * This is SlowMap Map, it implements Map interafce
  */
@@ -226,10 +227,24 @@ public class Tuple {
     public static <A,B,C,D,E> FiveTuple<A,B,C,D,E> fiveTuple(A a, B b, C c, D d, E e){
         return new FiveTuple<>(a,b,c,d,e);
     }
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args){
+        Tuple tupel = new Tuple();
+        FiveTuple t1b = new FiveTuple(1,1,1,1,1);
+        FiveTuple t2b = new FiveTuple(1,1,1,2,1);
+        FiveTuple t3b = new FiveTuple(1,1,1,1,1);
+        FiveTuple t4b = new FiveTuple(1,1,1,1,0);
+
+        System.out.println(t1b.compareTo(t1b));
+        System.out.println(t1b.compareTo(t2b));
+        System.out.println(t1b.compareTo(t3b));
+        System.out.println(t1b.compareTo(t4b));
+
+        List<FiveTuple> list = Arrays.asList(t1b,t2b,t3b,t4b);
+        Set<FiveTuple> set = new TreeSet<>();
+        set.addAll(list);
+        System.out.println(set);
+    }
 }
-interface W<K>{}
-interface H{}
-class A<K> implements W<A<K>>{}
-class B<K> extends A<K> implements W<B<K>>{}
-class C implements W{}
+
 
