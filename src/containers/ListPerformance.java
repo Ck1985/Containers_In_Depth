@@ -100,10 +100,62 @@ public class ListPerformance {
                 for (int i = 0; i < loops; i++){
                     linkedList.clear();
                     for (int j = 0; j < listSize; j++){
-
+                        linkedList.addLast(47);
                     }
                 }
+                return loops * listSize;
             }
         });
+        qTest.add(new Test<LinkedList<Integer>>("removeFirst"){
+            int test(LinkedList<Integer> linkedList, TestParam tp){
+                int loops = tp.loops;
+                int listSize = linkedList.size();
+                for (int i = 0; i < loops; i++){
+                    linkedList.clear();
+                    linkedList.addAll(new CountingIntegerList(listSize));
+                    for (int j = 0; j < listSize; j++){
+                        while (listSize > 0) {
+                            linkedList.removeFirst();
+                        }
+                    }
+                }
+                return loops * listSize;
+            }
+        });
+        qTest.add(new Test<LinkedList<Integer>>("removeLast"){
+            int test(LinkedList<Integer> linkedList, TestParam tp){
+                int loops = tp.loops;
+                int listSize = linkedList.size();
+                for (int i = 0; i < loops; i++) {
+                    linkedList.clear();
+                    linkedList.addAll(new CountingIntegerList(listSize));
+                    for (int j = 0; j < listSize; j++) {
+                        while (listSize > 0) {
+                            linkedList.removeLast();
+                        }
+                    }
+                }
+                return loops * listSize;
+            }
+        });
+    }
+
+    static class TesterList extends Tester<List<Integer>> {
+        public TesterList(List<Integer> container, List<Test<List<Integer>>> tests) {
+            super(container, tests);
+        }
+
+        @Override protected List<Integer> initialize(int size) {
+            container.clear();
+            container.addAll(new CountingIntegerList(size));
+            return container;
+        }
+        public static void run(List<Integer> list, List<Test<List<Integer>>> tests){
+            new TesterList(list, tests).timeTest();
+        }
+    }
+
+    public static void main(String[] args){
+
     }
 }
