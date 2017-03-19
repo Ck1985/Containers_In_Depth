@@ -1,7 +1,7 @@
 package containers;
 
 import java.util.*;
-
+import net.mindview.util.*;
 /**
  * Demonstrator different performance in Lists.
  */
@@ -156,6 +156,14 @@ public class ListPerformance {
     }
 
     public static void main(String[] args){
-
+        if (args.length > 0) {
+            Tester.defaultParams = TestParam.array(args);
+        }
+        Tester<List<Integer>> arrayTest = new Tester<List<Integer>>(null, tests.subList(1,3)){
+            @Override
+            protected List<Integer> initialize(int size){
+                Integer[] ia = Generated.
+            }
+        };
     }
 }
