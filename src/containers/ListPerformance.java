@@ -9,7 +9,7 @@ public class ListPerformance {
     static Random random = new Random();
     static int reps = 1000;
     static List<Test<List<Integer>>> tests = new ArrayList<>();
-    static List<Test<LinkedList<Integer>>> qTest = new ArrayList<>();
+    static List<Test<LinkedList<Integer>>> qTests = new ArrayList<>();
     static {
         tests.add(new Test<List<Integer>>("add"){
             int test(List<Integer> list, TestParam tp){
@@ -67,75 +67,71 @@ public class ListPerformance {
         tests.add(new Test<List<Integer>>("remove"){
             int test(List<Integer> list, TestParam tp){
                 int loops = tp.loops;
-                int listSize = list.size();
+                int size = tp.size;
                 for (int i = 0; i < loops; i++){
                     list.clear();
-                    list.addAll(new CountingIntegerList(listSize));
-                    while (listSize > 5){
+                    list.addAll(new CountingIntegerList(size));
+                    while (list.size() > 5){
                         list.remove(5);
                     }
                 }
-                return loops * listSize;
+                return loops * size;
             }
         });
 
         //Test for queue behavior
-        qTest.add(new Test<LinkedList<Integer>>("addFirst"){
+        qTests.add(new Test<LinkedList<Integer>>("addFirst"){
             int test(LinkedList<Integer> linkedList, TestParam tp){
                 int loops = tp.loops;
-                int listSize = linkedList.size();
+                int size = tp.size;
                 for (int i = 0; i < loops; i++){
                     linkedList.clear();
-                    for (int j = 0; j < listSize; j++){
+                    for (int j = 0; j < size; j++){
                         linkedList.addFirst(47);
                     }
                 }
-                return loops * listSize;
+                return loops * size;
             }
         });
-        qTest.add(new Test<LinkedList<Integer>>("addLast"){
+        qTests.add(new Test<LinkedList<Integer>>("addLast"){
             int test(LinkedList<Integer> linkedList, TestParam tp){
                 int loops = tp.loops;
-                int listSize = linkedList.size();
+                int size = tp.size;
                 for (int i = 0; i < loops; i++){
                     linkedList.clear();
-                    for (int j = 0; j < listSize; j++){
+                    for (int j = 0; j < size; j++){
                         linkedList.addLast(47);
                     }
                 }
-                return loops * listSize;
+                return loops * size;
             }
         });
-        qTest.add(new Test<LinkedList<Integer>>("removeFirst"){
+        qTests.add(new Test<LinkedList<Integer>>("removeFirst"){
             int test(LinkedList<Integer> linkedList, TestParam tp){
                 int loops = tp.loops;
-                int listSize = linkedList.size();
+                int size = tp.size;
                 for (int i = 0; i < loops; i++){
                     linkedList.clear();
-                    linkedList.addAll(new CountingIntegerList(listSize));
-                    for (int j = 0; j < listSize; j++){
-                        while (listSize > 0) {
+                    linkedList.addAll(new CountingIntegerList(size));
+                        while (linkedList.size() > 0) {
                             linkedList.removeFirst();
                         }
-                    }
                 }
-                return loops * listSize;
+                return loops * size;
             }
         });
-        qTest.add(new Test<LinkedList<Integer>>("removeLast"){
+        qTests.add(new Test<LinkedList<Integer>>("removeLast"){
             int test(LinkedList<Integer> linkedList, TestParam tp){
                 int loops = tp.loops;
-                int listSize = linkedList.size();
+                int size = tp.size;
                 for (int i = 0; i < loops; i++) {
                     linkedList.clear();
-                    linkedList.addAll(new CountingIntegerList(listSize));
-                    for (int j = 0; j < listSize; j++) {
-                        while (listSize > 0) {
+                    linkedList.addAll(new CountingIntegerList(size));
+                        while (linkedList.size() > 0) {
                             linkedList.removeLast();
                         }
-                    }
                 }
-                return loops * listSize;
+                return loops * size;
             }
         });
     }
@@ -162,8 +158,23 @@ public class ListPerformance {
         Tester<List<Integer>> arrayTest = new Tester<List<Integer>>(null, tests.subList(1,3)){
             @Override
             protected List<Integer> initialize(int size){
-            // test a momment
+                Integer[] ia = Generated.array(Integer.class, new CountingGenerator.Integer(), size);
+                return Arrays.asList(ia);
             }
         };
+        arrayTest.setHeadLine("Array As List");
+        arrayTest.timeTest();
+
+        Tester.defaultParams = TestParam.array(10, 5000, 100, 5000, 1000, 1000, 10000, 200);
+        if (args.length > 0) {
+            Tester.defaultParams = TestParam.array(args);
+        }
+        TesterList.run(new ArrayList<Integer>(), tests);
+        TesterList.run(new LinkedList<Integer>(), tests);
+        TesterList.run(new Vector<Integer>(), tests);
+        Tester.fieldWidth = 12;
+        Tester<LinkedList<Integer>> qTest = new Tester<LinkedList<Integer>>(new LinkedList<Integer>(), qTests);
+        qTest.setHeadLine("Queue Test");
+        qTest.timeTest();
     }
 }
