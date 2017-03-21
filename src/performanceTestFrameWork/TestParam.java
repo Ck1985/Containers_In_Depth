@@ -4,8 +4,8 @@ package performanceTestFrameWork;
  * TestParam.java
  */
 class TestParam {
-    private final int size;
-    private final int loops;
+    final int size;
+    final int loops;
     public TestParam(int size, int loops){
         this.size = size;
         this.loops = loops;
