@@ -165,7 +165,7 @@ public class ListPerformance {
         arrayTest.setHeadLine("Array As List");
         arrayTest.timeTest();
 
-        /*Tester.defaultParams = TestParam.array(10, 5000, 100, 5000, 1000, 1000, 10000, 200);
+        Tester.defaultParams = TestParam.array(10, 5000, 100, 5000, 1000, 1000, 10000, 200);
         if (args.length > 0) {
             Tester.defaultParams = TestParam.array(args);
         }
@@ -175,6 +175,6 @@ public class ListPerformance {
         Tester.fieldWidth = 12;
         Tester<LinkedList<Integer>> qTest = new Tester<LinkedList<Integer>>(new LinkedList<Integer>(), qTests);
         qTest.setHeadLine("Queue Test");
-        qTest.timeTest();*/
+        qTest.timeTest();
     }
 }
