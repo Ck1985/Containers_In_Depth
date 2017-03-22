@@ -7,12 +7,10 @@ import java.util.*;
  */
 
 public class Tester<C> {
-    private static int dashLength = 0;
-    private static int totalWidth = 0;
-    private static int fieldWidth = 8;
-    private static int sizeWidth = 5;
-    private TestParam[] defaultParams = TestParam.array(10,5000,100,5000,1000,5000,10000,500);
-    private TestParam[] listParam = defaultParams;
+    public static int fieldWidth = 8;
+    public static int sizeWidth = 5;
+    public static TestParam[] defaultParams = TestParam.array(10,5000,100,5000,1000,5000,10000,500);
+    public static TestParam[] listParam = defaultParams;
     private String sizeField = "%" + sizeWidth + "s";
     private static String stringField(){
         return "%" + fieldWidth + "s";
@@ -21,23 +19,34 @@ public class Tester<C> {
         return "%" + fieldWidth + "d";
     }
     private String headLine = " ";
-    private C container;
-    private C initialize(int size){
+    protected C container;
+    protected C initialize(int size){
         return this.container;
     }
     private List<Test<C>> listTest;
     public Tester(C container, List<Test<C>> listTest){
         this.container = container;
         this.listTest = listTest;
-        if (container == null){
-            this.headLine = this.getClass().getSimpleName();
+        if (container != null){
+            this.headLine = container.getClass().getSimpleName();
         }
     }
     public Tester(C container, List<Test<C>> listTest, TestParam[] listParam){
         this(container, listTest);
         this.listParam = listParam;
     }
+    public void setHeadLine(String newHeadLine) {
+        this.headLine = newHeadLine;
+    }
+    public static <C> void run(C container, List<Test<C>> listTest){
+        new Tester<C>(container, listTest).timeTest();
+    }
+    public static <C> void run(C container, List<Test<C>> listTest, TestParam[] listParam){
+        new Tester<C>(container, listTest, listParam);
+    }
     private void displayHeadLine(){
+        int totalWidth = 0;
+        int dashLength = 0;
         totalWidth = fieldWidth * listTest.size() + sizeWidth;
         dashLength = totalWidth - headLine.length() - 1;
         StringBuilder head = new StringBuilder();
@@ -57,10 +66,10 @@ public class Tester<C> {
         }
         System.out.println();
     }
-    private void timeTest(){
+    protected void timeTest(){
         this.displayHeadLine();
         for (TestParam param : listParam) {
-            System.out.format(numberField(), param.size);
+            System.out.format(sizeField, param.size);
             for (Test<C> test : listTest) {
                 C kontainer = this.initialize(param.size);
                 long start = System.nanoTime();
