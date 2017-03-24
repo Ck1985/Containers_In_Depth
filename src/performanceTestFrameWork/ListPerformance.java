@@ -52,9 +52,9 @@ public class ListPerformance {
             int test(List<Integer> container, TestParam tp){
                 final int LOOPS = 1000000;
                 int halfSize = container.size() / 2;
-                ListIterator<Integer> iterator = container.listIterator();
+                ListIterator<Integer> iterator = container.listIterator(halfSize);
                 for (int i = 0; i < LOOPS; i++){
-                    iterator.add(random.nextInt(halfSize));
+                    iterator.add(47);
                 }
                 return LOOPS;
             }
