@@ -66,7 +66,7 @@ public class Tester<C> {
         }
         System.out.println();
     }
-    protected void timeTest(){
+    public void timeTest(){
         this.displayHeadLine();
         for (TestParam param : listParam) {
             System.out.format(sizeField, param.size);

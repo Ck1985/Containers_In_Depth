@@ -16,7 +16,7 @@ public class ListPerformance {
     static {
         // Test behaviors of List:
         testList.add(new Test<List<Integer>>("add"){
-            int test(List<Integer> container, TestParam tp){
+            public int test(List<Integer> container, TestParam tp){
                 int listSize = tp.size;
                 int loops = tp.loops;
                 for (int i = 0; i < loops; i++) {
@@ -29,7 +29,7 @@ public class ListPerformance {
             }
         });
         testList.add(new Test<List<Integer>>("get"){
-            int test(List<Integer> container, TestParam tp){
+            public int test(List<Integer> container, TestParam tp){
                 int loops = tp.loops * reps;
                 int listSize = container.size();
                 for (int i = 0; i < loops; i++){
@@ -39,7 +39,7 @@ public class ListPerformance {
             }
         });
         testList.add(new Test<List<Integer>>("set"){
-            int test(List<Integer> container, TestParam tp) {
+            public int test(List<Integer> container, TestParam tp) {
                 int loops = tp.loops * reps;
                 int listSize = container.size();
                 for (int i = 0; i < loops; i++) {
@@ -49,7 +49,7 @@ public class ListPerformance {
             }
         });
         testList.add(new Test<List<Integer>>("iterAdd"){
-            int test(List<Integer> container, TestParam tp){
+            public int test(List<Integer> container, TestParam tp){
                 final int LOOPS = 1000000;
                 int halfSize = container.size() / 2;
                 ListIterator<Integer> iterator = container.listIterator(halfSize);
@@ -60,7 +60,7 @@ public class ListPerformance {
             }
         });
         testList.add(new Test<List<Integer>>("insert"){
-            int test(List<Integer> container, TestParam tp){
+            public int test(List<Integer> container, TestParam tp){
                 int loops = tp.loops;
                 for (int i = 0; i < loops; i++) {
                     container.add(5,47);
@@ -69,7 +69,7 @@ public class ListPerformance {
             }
         });
         testList.add(new Test<List<Integer>>("remove"){
-            int test(List<Integer> container, TestParam tp){
+            public int test(List<Integer> container, TestParam tp){
                 int loops = tp.loops;
                 int size = tp.size;
                 for (int i = 0; i < loops; i++) {
@@ -83,7 +83,7 @@ public class ListPerformance {
             }
         });
         qTestList.add(new Test<LinkedList<Integer>>("addFirst"){
-            int test(LinkedList<Integer> container, TestParam tp){
+            public int test(LinkedList<Integer> container, TestParam tp){
                 int loops = tp.loops;
                 int size = tp.size;
                 for (int i = 0; i < loops; i++) {
@@ -96,7 +96,7 @@ public class ListPerformance {
             }
         });
         qTestList.add(new Test<LinkedList<Integer>>("addLast"){
-            int test(LinkedList<Integer> container, TestParam tp){
+            public int test(LinkedList<Integer> container, TestParam tp){
                 int loops = tp.loops;
                 int size = tp.size;
                 for (int i = 0; i < loops; i++) {
@@ -109,7 +109,7 @@ public class ListPerformance {
             }
         });
         qTestList.add(new Test<LinkedList<Integer>>("removeFirst"){
-            int test(LinkedList<Integer> container, TestParam tp) {
+            public int test(LinkedList<Integer> container, TestParam tp) {
                 int loops = tp.loops;
                 int size = tp.size;
                 for (int i = 0; i < loops; i++) {
@@ -123,7 +123,7 @@ public class ListPerformance {
             }
         });
         qTestList.add(new Test<LinkedList<Integer>>("removeLast"){
-            int test(LinkedList<Integer> container, TestParam tp){
+            public int test(LinkedList<Integer> container, TestParam tp){
                 int loops = tp.loops;
                 int size = tp.size;
                 for (int i = 0; i < loops; i++) {
