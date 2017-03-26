@@ -10,17 +10,17 @@ import net.mindview.util.*;
  */
 
 class ListPerformance{
+    private static CountingGenerator.String generator = new CountingGenerator.String();
     private static final Random random = new Random();
     private static final int reps = 1000;
     private static class CountingStringList extends AbstractList<String>{
-        private CountingGenerator.String countingString = null;
-        private CountingGenerator.String generator = null;
+        private List<String> list = new ArrayList<>();
+        private CountingGenerator.String generator = new CountingGenerator.String();
         private int size = 0;
-        public CountingStringList(int size) throws Exception{
+        public CountingStringList(int size){
             this.size = size;
-            generator = countingString.getClass().newInstance();
             for (int i = 0; i < size; i++){
-                this.add(generator.next());
+                list.add(generator.next());
             }
         }
         public String get(int index){
@@ -37,11 +37,6 @@ class ListPerformance{
             public int test(List<String> list, TestParam tp){
                 int loops = tp.loops;
                 int sizeList = tp.size;
-                try {
-                    CountingGenerator.String generator = CountingGenerator.String.class.newInstance();
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
                     for (int i = 0; i < loops; i++) {
                         list.clear();
                         for (int j = 0; j < sizeList; j++) {
@@ -65,14 +60,9 @@ class ListPerformance{
             public int test(List<String> list, TestParam tp){
                 int loops = tp.loops * reps;
                 int listSize = list.size();
-                try {
-                    CountingGenerator.String generator = CountingGenerator.String.class.newInstance();
-                    for (int i = 0; i < loops; i++) {
+                for (int i = 0; i < loops; i++) {
                         list.set(random.nextInt(listSize),generator.next());
                     }
-                } catch (Exception e){
-                    System.err.println(e);
-                }
                 return loops;
             }
         });
@@ -81,28 +71,18 @@ class ListPerformance{
                 final int LOOPS = 1000000;
                 int halfSize = list.size() / 2;
                 ListIterator<String> listIterator = list.listIterator(halfSize);
-                try {
-                    CountingGenerator.String generator = CountingGenerator.String.class.newInstance();
-                    for (int i = 0; i < LOOPS; i++) {
+                for (int i = 0; i < LOOPS; i++) {
                         listIterator.add(generator.next());
                     }
-                } catch (Exception e){
-                    System.err.println(e);
-                }
                 return LOOPS;
             }
         });
         testList.add(new Test<List<String>>("insert"){
             public int test(List<String> list, TestParam tp){
                 int loops = tp.loops;
-                try{
-                    CountingGenerator.String generator = CountingGenerator.String.class.newInstance();
-                    for (int i = 0; i < loops; i++) {
+                for (int i = 0; i < loops; i++) {
                         list.add(5,generator.next());
                     }
-                } catch (Exception e){
-                    System.err.println(e);
-                }
                 return loops;
             }
         });
@@ -110,7 +90,6 @@ class ListPerformance{
             public int test(List<String> list, TestParam tp){
                 int loops = tp.loops;
                 int listSize = tp.size;
-                try {
                     for (int i = 0; i < loops; i++) {
                         list.clear();
                         list.addAll(new CountingStringList(listSize));
@@ -118,9 +97,6 @@ class ListPerformance{
                             list.remove(5);
                         }
                     }
-                }catch (Exception e){
-                    System.err.println(e);
-                }
                 return loops * listSize;
             }
         });
@@ -128,17 +104,12 @@ class ListPerformance{
             public int test(LinkedList<String> list, TestParam tp){
                 int loops = tp.loops;
                 int size = tp.size;
-                try{
-                    CountingGenerator.String generator = CountingGenerator.String.class.newInstance();
-                    for (int i = 0; i < loops; i++) {
+                for (int i = 0; i < loops; i++) {
                         list.clear();
                         for (int j = 0; j < size; j++) {
                             list.addFirst(generator.next());
                         }
                     }
-                }catch (Exception e){
-                    System.err.println(e);
-                }
                 return loops * size;
             }
         });
@@ -146,18 +117,13 @@ class ListPerformance{
             public int test(LinkedList<String> list, TestParam tp){
                 int loops = tp.loops;
                 int listSize = tp.size;
-                try{
-                    CountingGenerator.String generator = CountingGenerator.String.class.newInstance();
-                    for (int i = 0; i < loops; i++) {
+                for (int i = 0; i < loops; i++) {
                         list.clear();
                         list.addAll(new CountingStringList(listSize));
                         for (int j = 0; j < listSize; j++) {
                             list.addLast(generator.next());
                         }
                     }
-                } catch (Exception e){
-                    System.err.println(e);
-                }
                 return loops * listSize;
             }
         });
@@ -165,7 +131,6 @@ class ListPerformance{
             public int test(LinkedList<String> list, TestParam tp){
                 int loops = tp.loops;
                 int listSize = tp.size;
-                try {
                     for (int i = 0; i < loops; i++) {
                         list.clear();
                         list.addAll(new CountingStringList(listSize));
@@ -173,9 +138,6 @@ class ListPerformance{
                             list.removeFirst();
                         }
                     }
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
                 return loops * listSize;
             }
         });
@@ -183,7 +145,6 @@ class ListPerformance{
             public int test(LinkedList<String> list, TestParam tp){
                 int loops = tp.loops;
                 int listSize = tp.size;
-                try{
                     for (int i = 0; i < loops; i++) {
                         list.clear();
                         list.addAll(new CountingStringList(listSize));
@@ -191,9 +152,6 @@ class ListPerformance{
                             list.removeLast();
                         }
                     }
-                } catch (Exception e){
-                    System.err.println(e);
-                }
                 return loops * listSize;
             }
         });
@@ -233,5 +191,9 @@ class Example_29 {
         ListPerformance.ListTester.run(new ArrayList<String>(), ListPerformance.testList);
         ListPerformance.ListTester.run(new LinkedList<String>(), ListPerformance.testList);
         ListPerformance.ListTester.run(new Vector<String>(), ListPerformance.testList);
+
+        Tester<LinkedList<String>> qTest = new Tester<>(new LinkedList<String>(), ListPerformance.qTestList);
+        qTest.setHeadLine("queue Test");
+        qTest.timeTest();
     }
 }
