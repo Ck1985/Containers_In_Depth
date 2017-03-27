@@ -12,30 +12,30 @@ abstract class TestSort<L> {
     public TestSort(String name){
         this.name = name;
     }
-    abstract int testSort(L list, TestParam tp);
+    abstract int testSort(L list, TestParam_30 tp);
 }
-class TestParam{
+class TestParam_30{
     final int loops;
     final int size;
-    public TestParam(int loops, int size){
+    public TestParam_30(int loops, int size){
         this.loops = loops;
         this.size = size;
     }
-    public static TestParam[] createArrayParam(int...values){
+    public static TestParam_30[] createArrayParam(int...values){
         int sizeArray = values.length / 2;
         int n = 0;
-        TestParam[] arrayParam = new TestParam[sizeArray];
+        TestParam_30[] arrayParam = new TestParam_30[sizeArray];
         for (int i = 0; i < sizeArray; i++) {
-            arrayParam[i] = new TestParam(values[n++],values[n++]);
+            arrayParam[i] = new TestParam_30(values[n++],values[n++]);
         }
         return arrayParam;
     }
 }
-class Tester<L>{
+class Tester_30<L>{
     private static int fieldWidth = 8;
     private static int sizeWidth = 5;
-    private static TestParam[] defaultParam = TestParam.createArrayParam(10,5000,100,5000,1000,5000,10000,200);
-    private static TestParam[] listParam = defaultParam;
+    private static TestParam_30[] defaultParam = TestParam_30.createArrayParam(10,5000,100,5000,1000,5000,10000,200);
+    private static TestParam_30[] listParam = defaultParam;
     private String sizeField = "%" + sizeWidth + "s";
     private static String stringField(){
         return "%" + fieldWidth + "s";
@@ -49,12 +49,15 @@ class Tester<L>{
         return this.list;
     }
     private List<TestSort<L>> testSortList;
-    public Tester(L list, List<TestSort<L>> testSortList){
+    public Tester_30(L list, List<TestSort<L>> testSortList){
         this.list = list;
         this.testSortList = testSortList;
+        if (list != null) {
+            headLine = list.getClass().getSimpleName();
+        }
     }
     public static <L> void run(L list, List<TestSort<L>> testSortList){
-        new Tester<L>(list, testSortList).timeTest();
+        new Tester_30<L>(list, testSortList).timeTest();
     }
     public void setHeadLine(String newHeadLine){
         this.headLine = newHeadLine;
@@ -81,8 +84,9 @@ class Tester<L>{
     }
     public void timeTest(){
         this.displayHeadLine();
-        for (TestParam param : listParam) {
-            System.out.format(sizeField, param.size);
+        System.out.println();
+        for (TestParam_30 param : listParam) {
+            System.out.format(sizeField, param.loops);
             for (TestSort<L> testSort : testSortList) {
                 L list = this.initialize(param.size);
                 long start = System.nanoTime();
@@ -96,15 +100,32 @@ class Tester<L>{
     }
 }
 class SortPerformance{
+    private static Random random = new Random();
+    private final static int reps = 1000;
+    static List<TestSort<List<Integer>>> testSortList = new ArrayList<>();
 
+    static {
+        testSortList.add(new TestSort<List<Integer>>("sort()"){
+            int testSort(List<Integer> list, TestParam_30 tp){
+                int loops = tp.loops;
+                int size = tp.size;
+                for (int i = 0; i < loops; i++) {
+                    for (int j = 0; j < size; j++){
+                        list.clear();
+                        list.add(random.nextInt(size));
+                    }
+                    Collections.sort(list);
+                }
+                return loops * size;
+            }
+        });
+    }
 }
 public class Example_30 {
     public static void main(String[] args){
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        CountingGenerator.Integer generator = new CountingGenerator.Integer();
-        for (int i = 0; i < 20; i++){
-            arrayList.add(generator.next());
-        }
-        System.out.println(arrayList);
+        Tester_30<List<Integer>> tester_ArrayList = new Tester_30<List<Integer>>(new ArrayList<Integer>(), SortPerformance.testSortList);
+        tester_ArrayList.timeTest();
+        Tester_30<List<Integer>> tester_LinkedList = new Tester_30<>(new LinkedList<>(), SortPerformance.testSortList);
+        tester_LinkedList.timeTest();
     }
 }

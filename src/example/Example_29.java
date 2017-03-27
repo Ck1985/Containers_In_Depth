@@ -2,7 +2,6 @@ package example;
 
 import java.util.*;
 import performanceTestFrameWork.*;
-import arrays.*;
 import net.mindview.util.*;
 
 /**
