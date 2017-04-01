@@ -2,7 +2,7 @@ package example;
 
 import java.util.*;
 import net.mindview.util.*;
-import sun.nio.cs.FastCharsetProvider;
+import org.openjdk.jmh.annotations.Benchmark;
 
 /**
  * Created by anonymous.vn1985@gmail.com
