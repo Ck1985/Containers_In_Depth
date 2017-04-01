@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="benchmarks">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Maven_Projects/target/benchmarks.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

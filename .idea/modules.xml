@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Containers_In_Depth.iml" filepath="$PROJECT_DIR$/Containers_In_Depth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Maven_Projects/Maven_Projects.iml" filepath="$PROJECT_DIR$/../Maven_Projects/Maven_Projects.iml" />
-      <module fileurl="file://C:\Users\Dell Vostro 5459\IdeaProjects\Maven_Projects\first-benchmark\first-benchmark.iml" filepath="C:\Users\Dell Vostro 5459\IdeaProjects\Maven_Projects\first-benchmark\first-benchmark.iml" />
     </modules>
   </component>
 </project>
