@@ -21,7 +21,7 @@ public class Tester<C> {
     }
     private static int sizeWidth = 5;
     private static String sizeField = "%" + sizeWidth + "s";
-    private TestParam[] paramList = defaultParams;
+    static TestParam[] paramList = defaultParams;
 
     public Tester(C container, List<Test<C>> tests){
         this.container = container;
