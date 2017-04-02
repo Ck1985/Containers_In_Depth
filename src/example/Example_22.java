@@ -36,6 +36,9 @@ class MapEntry<K,V> implements Map.Entry<K,V>{
                     (this.value == null ? ((MapEntry)object).getValue() == null : this.getValue().equals(((MapEntry)object).getValue()));
         }
     }
+    public String toString() {
+        return this.key + " = " + this.value;
+    }
 }
 class SimpleHashMap<K,V> extends AbstractMap<K,V>{
     private static final int SIZE = 97;
