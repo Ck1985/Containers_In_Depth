@@ -5,7 +5,7 @@ import java.util.*;
  * This is SlowMap Map, it implements Map interafce
  */
 
-class MapEntry<K,V> implements Map.Entry<K,V>{
+class MapEntry<K,V> implements Map.Entry<K,V>, Comparable<MapEntry<K,V>>{
     private K key;
     private V value;
 
@@ -36,6 +36,11 @@ class MapEntry<K,V> implements Map.Entry<K,V>{
                     (this.value == null ? ((MapEntry)object).getValue() == null : this.getValue().equals(((MapEntry)object).getValue()));
         }
     }
+
+    public int compareTo(MapEntry<K,V> object) {
+        return this.getKey().co
+    }
+
     public String toString() {
         return this.key + " = " + this.value;
     }
