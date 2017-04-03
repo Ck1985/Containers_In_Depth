@@ -38,7 +38,7 @@ class MapEntry<K,V> implements Map.Entry<K,V>, Comparable<MapEntry<K,V>>{
     }
 
     public int compareTo(MapEntry<K,V> object) {
-        return this.getKey().co
+        return (this.getKey().hashCode() > object.getKey().hashCode()) ? 1 : ((this.getKey().hashCode() == object.getKey().hashCode()) ? 0 : -1);
     }
 
     public String toString() {

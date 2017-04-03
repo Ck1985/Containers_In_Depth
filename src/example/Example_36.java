@@ -53,7 +53,7 @@ class SlowMap_36Performance {
 }
 
 class SlowMap_36<K,V> extends AbstractMap<K,V> {
-    private List<MapEntry<K,V>> entryList = new ArrayList<MapEntry<K,V>>();
+    List<MapEntry<K,V>> entryList = new ArrayList<MapEntry<K,V>>();
 
     @SuppressWarnings("unchecked")
     public V put(K key, V value) {
@@ -83,7 +83,7 @@ class SlowMap_36<K,V> extends AbstractMap<K,V> {
 
     @SuppressWarnings("unchecked")
     public Set<Map.Entry<K,V>> entrySet() {
-        Set<Map.Entry<K,V>> entrySet = new HashSet<>();
+        Set<Map.Entry<K,V>> entrySet = new LinkedHashSet<>();
         entrySet.addAll(entryList);
         return entrySet;
     }
@@ -93,10 +93,19 @@ public class Example_36 {
     public static void main(String[] args) {
         SlowMap_36<String, String> slowMap_36 = new SlowMap_36<>();
         slowMap_36.putAll(Countries.capitals(10));
+        for (Map.Entry mapEntry : slowMap_36.entryList) {
+            System.out.print(mapEntry.getKey() + " ");
+        }
+        System.out.println();
+        for (Map.Entry entry : slowMap_36.entryList) {
+            System.out.print(entry.getKey().hashCode() + " ");
+        }
+        System.out.println();
         System.out.println(slowMap_36);
-        /*System.out.println(slowMap_36.get("CHAD"));
+        System.out.println(slowMap_36.entrySet());
+        System.out.println(slowMap_36.get("CHAD"));
         System.out.println(slowMap_36.entrySet());
         System.out.println("------------------");
-        Tester.run(new SlowMap_36<>(), SlowMap_36Performance.testList);*/
+        Tester.run(new SlowMap_36<>(), SlowMap_36Performance.testList);
     }
 }
