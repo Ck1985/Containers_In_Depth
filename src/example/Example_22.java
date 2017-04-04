@@ -2,7 +2,7 @@ package example;
 import java.util.*;
 
 /**
- * This is SlowMap Map, it implements Map interafce
+ * This is MapEntry, it implements Map interface
  */
 
 class MapEntry<K,V> implements Map.Entry<K,V>, Comparable<MapEntry<K,V>>{

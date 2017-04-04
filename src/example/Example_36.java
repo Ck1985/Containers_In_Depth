@@ -73,12 +73,25 @@ class SlowMap_36<K,V> extends AbstractMap<K,V> {
 
     @SuppressWarnings("unchecked")
     public V get(Object key) {
-        for (MapEntry mapEntry : entryList) {
+        /*for (MapEntry mapEntry : entryList) {
             if (mapEntry.getKey().equals(key)) {
                 return (V)mapEntry.getValue();
             }
         }
-        return null;
+        return null;*/
+
+        MapEntry<K,V> searchEntry = null;
+        int resultIndex = 0;
+        V resultValue = null;
+        for (MapEntry mapEntry : entryList) {
+            if (mapEntry.getKey().equals(key)) {
+                searchEntry = new MapEntry(key, mapEntry.getValue());
+                resultIndex = Collections.binarySearch(entryList, searchEntry);
+                resultValue = entryList.get(resultIndex).getValue();
+                break;
+            }
+        }
+        return resultValue;
     }
 
     @SuppressWarnings("unchecked")
@@ -91,21 +104,55 @@ class SlowMap_36<K,V> extends AbstractMap<K,V> {
 
 public class Example_36 {
     public static void main(String[] args) {
-        SlowMap_36<String, String> slowMap_36 = new SlowMap_36<>();
-        slowMap_36.putAll(Countries.capitals(10));
-        for (Map.Entry mapEntry : slowMap_36.entryList) {
-            System.out.print(mapEntry.getKey() + " ");
-        }
+        if(args.length > 0)
+            Tester.defaultParams = TestParam.array(args);
+        else
+            Tester.defaultParams = TestParam.array(10, 100, 50, 50, 100, 20);
+        System.out.println("Tesing SlowMap_36:");
+        SlowMap_36<String,String> m = new SlowMap_36<String,String>();
+        m.putAll(Countries.capitals(15));
+        System.out.println("m: " + m);
+        System.out.println("m.get(\"BURUNDI\"): " + m.get("BURUNDI"));
+        System.out.println("m.entrySet(): " + m.entrySet());
+        System.out.println("m.keySet(): " + m.keySet());
+        System.out.println("m.values() = " + m.values());
+        System.out.println("Two different maps: ");
+        SlowMap_36<String,String> m2 = new SlowMap_36<String,String>();
+        System.out.println("m.equals(m2): " + m.equals(m2));
+        m2.putAll(Countries.capitals(15));
+        System.out.println("Maps with same entries: ");
+        System.out.println("m.equals(m2): " + m.equals(m2));
+        m.clear();
+        System.out.println("After m.clear(), m.isEmpty(): " +
+                m.isEmpty() + ", m = " + m);
+        m2.keySet().clear();
+        System.out.println("After m2.keySet().clear(), m2.isEmpty(): "
+                + m2.isEmpty() + ", m2 = " + m2);
         System.out.println();
-        for (Map.Entry entry : slowMap_36.entryList) {
-            System.out.print(entry.getKey().hashCode() + " ");
-        }
+        System.out.println("Testing SlowMap_36:");
+        SlowMap_36<String,String> m3 = new SlowMap_36<String,String>();
+        m3.putAll(Countries.capitals(15));
+        System.out.println("m3: " + m3);
+        System.out.println("m3.get(\"BURUNDI\"): " + m3.get("BURUNDI"));
+        System.out.println("m3.entrySet(): " + m3.entrySet());
+       // System.out.println("m3.hashEntryList(): " + m3.hashEntryList());
+        m3.clear();
+        System.out.println("After m3.clear(), m3.isEmpty(): " +
+                m3.isEmpty() + ", m3 = " + m3);
+        m3.keySet().clear();
+        System.out.println("After m3.keySet().clear(), m3.isEmpty(): "
+                + m3.isEmpty() + ", m3 = " + m3);
         System.out.println();
-        System.out.println(slowMap_36);
-        System.out.println(slowMap_36.entrySet());
-        System.out.println(slowMap_36.get("CHAD"));
-        System.out.println(slowMap_36.entrySet());
-        System.out.println("------------------");
-        Tester.run(new SlowMap_36<>(), SlowMap_36Performance.testList);
+        System.out.println("Comparative time SlowMap_36Perforrmance.testList:");
+        Tester.run(new SlowMap_36<Integer,Integer>(), SlowMap_36Performance.testList);
+        //Tester.run(new SlowMap17<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+       // Tester.run(new SlowMap36a<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        //Tester.run(new SlowMap36b<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        /*Tester.run(new HashMap<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        Tester.run(new TreeMap<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        Tester.run(new LinkedHashMap<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        Tester.run(new IdentityHashMap<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        Tester.run(new WeakHashMap<Integer,Integer>(), SlowMap_36Perforrmance.testList);
+        Tester.run(new Hashtable<Integer,Integer>(), SlowMap_36Perforrmance.testList);*/
     }
 }
