@@ -38,11 +38,24 @@ class MapPerformance_38 {
                 return loops * span;
             }
         });
-        testList
+        testList.add(new Test<Map<Integer,String>>("iterator") {
+            public int test(Map<Integer,String> map, TestParam tp) {
+                int loops = tp.loops * 10;
+                for (int i = 0; i < loops; i++) {
+                    Iterator<Map.Entry<Integer,String>> iterator = map.entrySet().iterator();
+                    while (iterator.hasNext()) {
+                        iterator.next();
+                    }
+                }
+                return loops;
+            }
+        });
     }
 }
 public class Example_38 {
     public static void main(String[] args) {
-
+        Tester.run(new HashMap<>(), MapPerformance_38.testList);
+        Tester.run(new HashMap<>(32), MapPerformance_38.testList);
+        Tester.run(new HashMap<Integer,String>(32, 1.5f), MapPerformance_38.testList);
     }
 }
