@@ -39,13 +39,14 @@ public class BitWise_Operators {
         b2 = b2 ^ b;
         System.out.println("b2 ^ b: " + b2 + " equals " + Integer.toBinaryString(b2));
         int c = 1;
-        System.out.println(Integer.toBinaryString(c));*/
+        System.out.println(Integer.toBinaryString(c));
         int d = 0b1010;
         System.out.println(Integer.toBinaryString(d));
         int d2 = d << 4;
         System.out.println(Integer.toBinaryString(d2));
         System.out.println(presentFullBinary(0b1010));
         System.out.println(presentFullBinary(d2));
-        System.out.println(presentFullBinary(0b000111100001101001011011));
+        System.out.println(presentFullBinary(0b000111100001101001011011));*/
+
     }
 }
