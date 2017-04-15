@@ -25,7 +25,15 @@ class Employee implements Comparable<Employee>{
     }
 
     public int compareTo(Employee emp) {
-        return (this.name.compareTo(emp.name) > 0) ? 1 : ((this.name.compareTo(emp.name)) == 0 ? 0 : -1);
+        return this.name.compareTo(emp.name);
+    }
+
+    public boolean equals(Object object) {
+        if (!(object instanceof Employee)) {
+            return false;
+        }
+        Employee emp = (Employee)object;
+        return this.name.equals(emp.name) && (this.id == emp.id);
     }
 
     public String toString() {
@@ -59,8 +67,14 @@ public class Example_40 {
         exm.showArray(arrayEmp);
         System.out.println(arrayList);
         arrayEmp[5].setId(100);
-        Employee serachKey = new Employee("anonymous", 100);
+        Employee serachKey = new Employee("anonymous", 5);
         arrayEmp[5] = serachKey;
-        System.out.println(Arrays.binarySearch(arrayEmp,serachKey));
+        Arrays.sort(arrayEmp, new EmployeeComId());
+        exm.showArray(arrayEmp);
+        System.out.println(Arrays.binarySearch(arrayEmp,serachKey,new EmployeeComId()));
+        arrayList.add(new Employee("xxx", 7));
+        Collections.sort(arrayList, new EmployeeComId());
+        System.out.println(arrayList);
+        System.out.println(Collections.binarySearch(arrayList, new Employee("xxx", 7),new EmployeeComId()));
     }
 }
