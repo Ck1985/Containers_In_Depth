@@ -30,7 +30,7 @@ class TwoString_41 implements Comparable<TwoString_41>{
         }
     }
 }
-public class Example_41 {
+public class Example_41_42 {
     public static void main(String[] args) {
         RandomGenerator.String rgs = new RandomGenerator.String(4);
         RandomGenerator.Integer rgi = new RandomGenerator.Integer(100);
