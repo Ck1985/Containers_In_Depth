@@ -13,7 +13,7 @@ public class Enumerations {
         while (enumeration.hasMoreElements()) {
             System.out.print(enumeration.nextElement() + ", ");
         }
-        //Procedure an Enumeration from Collection
+        //Procedure an Enumeration from Collection /////////////////////
         enumeration = Collections.enumeration(new ArrayList<String>());
     }
 }
